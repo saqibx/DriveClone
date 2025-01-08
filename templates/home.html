@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='home_style.css') }}">
+
+    <title>Doogle Grive Home</title>
+</head>
+<body>
+    <h1>DOOGLE GRIVE</h1>
+    <p>Click the button below to upload a file or view existing files.</p>
+    <form action="/upload" method="get">
+        <button type="submit">Upload</button>
+    </form>
+
+    <form action="/files" method="get">
+        <button type="submit">View Docs</button>
+    </form>
+
+    <form action="/logout" method="GET">
+        <button type="submit">logout</button>
+    </form>
+
+    {% with messages = get_flashed_messages(with_categories=True) %}
+        {% if messages %}
+            <ul>
+                {% for category, message in messages %}
+                    <li class="{{ category }}">{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    {% endwith %}
+</body>
+</html>
